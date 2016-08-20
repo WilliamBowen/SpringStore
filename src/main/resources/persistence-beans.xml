@@ -18,15 +18,15 @@
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName"
-            value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
-        <property name="url" value="${database.url" />
+            value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="${database.url}" />
         <property name="username" value="${database.username}" />
         <property name="password" value="${database.password}" />
     </bean>
     
     <!-- configure hibernate session factory -->
     <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
