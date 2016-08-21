@@ -1,7 +1,7 @@
 package wb.store.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,8 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,17 +25,12 @@ public class Cart {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "cart_product",
-            joinColumns = {@JoinColumn(name = "cart_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id")}
-    )
-	private Set<Product> cartItems = new HashSet<Product>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="cart")
+	private List<ProductInCart> cartItems = new ArrayList<>();
 
 	public Cart(){}
 
-	public Cart(User user, Set<Product> cartItems) {
-		super();
+	public Cart(User user, List<ProductInCart> cartItems) {
 		this.user = user;
 		this.cartItems = cartItems;
 	}
@@ -57,11 +51,11 @@ public class Cart {
 		this.user = user;
 	}
 
-	public Set<Product> getCartItems() {
+	public List<ProductInCart> getCartItems() {
 		return cartItems;
 	}
 
-	public void setCartItems(Set<Product> cartItems) {
+	public void setCartItems(List<ProductInCart> cartItems) {
 		this.cartItems = cartItems;
 	}
 

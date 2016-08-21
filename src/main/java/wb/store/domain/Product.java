@@ -16,7 +16,6 @@ public class Product {
 	private String name;
 	private String description;
 	private double price;
-	private Integer quantity;
 	
 	public Product() {
 	}
@@ -26,7 +25,6 @@ public class Product {
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.quantity = quantity;
 	}
 
 	public Long getId() {
@@ -61,14 +59,6 @@ public class Product {
 		this.price = price;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,7 +69,6 @@ public class Product {
 		long temp;
 		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
 		return result;
 	}
 
@@ -109,18 +98,12 @@ public class Product {
 			return false;
 		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
-		if (quantity == null) {
-			if (other.quantity != null)
-				return false;
-		} else if (!quantity.equals(other.quantity))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", quantity=" + quantity + "]";
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
 	}
 
 }	

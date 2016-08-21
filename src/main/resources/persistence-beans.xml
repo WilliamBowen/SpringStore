@@ -33,6 +33,7 @@
                 <value>wb.store.domain.User</value>
                 <value>wb.store.domain.Product</value>
                 <value>wb.store.domain.Cart</value>
+                <value>wb.store.domain.ProductInCart</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -40,6 +41,9 @@
                 <prop key="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.c3p0.min_size">5</prop>
+                <prop key="hibernate.c3p0.max_size">20</prop>
+                <prop key="hibernate.c3p0.timeout">1800</prop>
             </props>
         </property>
     </bean>
