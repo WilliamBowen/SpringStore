@@ -1,6 +1,5 @@
 package wb.store.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,6 +28,11 @@ public class ProductInCart {
 	
 	public ProductInCart(){}
 
+	public ProductInCart(Product product, Cart cart) {
+		this.product = product;
+		this.cart = cart;
+	}
+	
 	public ProductInCart(Product product, Cart cart, int quantity) {
 		this.product = product;
 		this.cart = cart;
@@ -74,7 +78,6 @@ public class ProductInCart {
 		result = prime * result + ((cart == null) ? 0 : cart.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((product == null) ? 0 : product.hashCode());
-		result = prime * result + quantity;
 		return result;
 	}
 
@@ -101,8 +104,6 @@ public class ProductInCart {
 			if (other.product != null)
 				return false;
 		} else if (!product.equals(other.product))
-			return false;
-		if (quantity != other.quantity)
 			return false;
 		return true;
 	}

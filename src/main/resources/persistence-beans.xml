@@ -9,6 +9,7 @@
 
 	<context:annotation-config />
 	
+	<context:component-scan base-package="wb.store.service.impl" />
 	<!-- manage transactions with annotations -->
     <tx:annotation-driven />
 	
@@ -26,7 +27,7 @@
     
     <!-- configure hibernate session factory -->
     <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>

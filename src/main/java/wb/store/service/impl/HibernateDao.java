@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +65,6 @@ public class HibernateDao<E, K extends Serializable> implements GenericDao<E, K>
 
 	@Override
 	public List<E> list() {
-		EntityManager em = currentSession().getEntityManagerFactory().createEntityManager();
-		CriteriaQuery<E> criteriaQuery = currentSession().getCriteriaBuilder().createQuery(daoType);
-		return em.createQuery(criteriaQuery).getResultList();
+		return currentSession().createCriteria(daoType).list();
 	}
 }

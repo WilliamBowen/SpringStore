@@ -20,7 +20,7 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String name, String description, double price, Integer quantity) {
+	public Product(String name, String description, double price) {
 		super();
 		this.name = name;
 		this.description = description;
