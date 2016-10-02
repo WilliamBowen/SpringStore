@@ -18,52 +18,55 @@ import wb.store.service.GenericDao;
  * @param <E> Entity from wb.store.domain
  * @param <K> Key used to identify the entity, such as ID number
  */
-@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
+
 public class HibernateDao<E, K extends Serializable> implements GenericDao<E, K> {
 	
 	private SessionFactory sessionFactory;
 	protected Class<E> daoType;
 	
 	//determine which class we are dealing with
-	public HibernateDao() {
-	daoType = (Class<E>) ((ParameterizedType) getClass()
+	@Autowired
+	public HibernateDao(SessionFactory sessionFactory) {
+		daoType = (Class<E>) ((ParameterizedType) getClass()
 				.getGenericSuperclass())
 				.getActualTypeArguments()[0];
-	}
-
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
 	
 	protected Session currentSession(){
 		return sessionFactory.getCurrentSession();
 	}
 	
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public void add(E entity) {
 		currentSession().save(entity);
 		
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public void update(E entity) {
 		currentSession().saveOrUpdate(entity);
 		
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public void remove(E entity) {
 		currentSession().delete(entity);
 		
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public E find(K key) {
 		return (E) currentSession().get(daoType,  key);
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public List<E> list() {
 		return currentSession().createCriteria(daoType).list();
 	}

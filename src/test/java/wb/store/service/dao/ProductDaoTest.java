@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 
 import wb.store.DomainAwareBase;
 import wb.store.domain.Product;
@@ -19,6 +20,7 @@ public class ProductDaoTest extends DomainAwareBase {
 	private ProductDao productDao;
 	
 	@Test
+	@Rollback(true)
 	public void testAdd() {
 		int size = productDao.list().size();
 		productDao.add(new Product("shirt", "description for shirt", 10.40));
@@ -27,6 +29,7 @@ public class ProductDaoTest extends DomainAwareBase {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void testUpdate() {
 		Product product = new Product("shirt", "description for shirt", 10.40);
 		productDao.add(product);
@@ -38,6 +41,7 @@ public class ProductDaoTest extends DomainAwareBase {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void testFind() {
 		Product product = new Product("shirt", "description for shirt", 10.40);
 		productDao.add(product);
@@ -47,6 +51,7 @@ public class ProductDaoTest extends DomainAwareBase {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void testList() {
 		assertEquals(0, productDao.list().size());
 		
@@ -66,6 +71,7 @@ public class ProductDaoTest extends DomainAwareBase {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void testRemove() {
 		Product product = new Product("shirt", "description for shirt", 10.40);
 		productDao.add(product);

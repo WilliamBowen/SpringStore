@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
 import wb.store.DomainAwareBase;
@@ -21,6 +22,7 @@ public class UserDaoTest extends DomainAwareBase {
 	private UserDao userDao;
 
 	@Test
+	@Rollback(true)
 	public void testAdd() {
 		int size = userDao.list().size();
 		userDao.add(new User("William", "Bowen", "wbowen", "test", "wbowen@mail.com"));
@@ -29,6 +31,7 @@ public class UserDaoTest extends DomainAwareBase {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void testUpdate() {
 		User user = new User("William", "Bowen", "wbowen", "test", "wbowen@mail.com");
 		userDao.add(user);
@@ -40,6 +43,7 @@ public class UserDaoTest extends DomainAwareBase {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void testFind() {
 		User user = new User("William", "Bowen", "wbowen", "test", "wbowen@mail.com");
 		userDao.add(user);
@@ -49,6 +53,7 @@ public class UserDaoTest extends DomainAwareBase {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void testList() {
 		assertEquals(0, userDao.list().size());
 		
@@ -68,6 +73,7 @@ public class UserDaoTest extends DomainAwareBase {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void testRemove() {
 		User user = new User("William", "Bowen", "wbowen", "test", "wbowen@mail.com");
 		userDao.add(user);
